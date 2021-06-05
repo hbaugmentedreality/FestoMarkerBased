@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<head>
+	
+   <link rel="icon" href="favicon.ico" />
+   <title>Festo - AR</title>
+	
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@0.3.2/dist/mindar.prod.js"></script>
+
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-2J4HN8P2R0"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-2J4HN8P2R0');
+	</script>
+	
+    
+    <style>
+
+      .example-container {
+              overflow: hidden;
+              position: absolute;
+              width: 100%;
+              height: 100%;
+            }
+          
+       #example-loading-overlay {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: transparent;
+        z-index: 2;
+            }
+
+        #example-loading-overlay .inner {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+        }
+
+        #example-loading-overlay.hidden {
+	          display: none;
+          }
+
+        #example-loading-overlay img {
+	      opacity: 1;
+	      width: 70%;
+	      align-self: center;
+          }
+
+        #example-loading-overlay .inner .scanline {
+          position: absolute;
+          width: 100%;
+          height: 10px;
+          background: white;
+          animation: move 2s linear infinite;
+          }
+ 
+    </style>
+
+
+
+</head>
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <div class="example-container">
+    
+    <div id="example-loading-overlay" class="hidden">
+      <div class="inner">
+        <img src="assets/images/Festo_Logo_low.png"/>
+        <h1>Loading...</h1>
+      </div>
+    </div>
+
+      <a-scene mindar="imageTargetSrc: targets.mind;  showStats: false; uiLoading: #example-loading-overlay;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false">
+
+	
+	     <a-assets>
+		<a-asset-item id="VTEM" src="assets/models/VTEM.glb"></a-asset-item>
+		<a-asset-item id="MS6SV" src="assets/models/MS6SV.glb"></a-asset-item>
+		<a-asset-item id="MS6E2M" src="assets/models/MS6E2M.glb"></a-asset-item>
+
+        
+        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+            <a-entity mindar-image-target="targetIndex: 0">
+              <a-gltf-model rotation="0 -90 -90 " position="0 0 0" scale="10 10 10" src="#VTEM" animation-mixer>
+            </a-entity>
+
+            <a-entity mindar-image-target="targetIndex: 1">
+                    <a-gltf-model rotation="0 -90 -90 " position="0 0.5 0" scale="10 10 10" src="#MS6SV" animation-mixer>
+            </a-entity>
+
+            <a-entity mindar-image-target="targetIndex: 2">
+                    <a-gltf-model rotation="0 -90 -90 " position="0 0 0" scale="10 10 10" src="#MS6E2M" animation-mixer>
+            </a-entity>
+          
+            <a-entity mindar-image-target="targetIndex: 3">
+              <a-gltf-model rotation="0 -90 -90 " position="0 0 0" scale="10 10 10" src="#VTEM" animation-mixer>
+            </a-entity>
+
+            <a-entity mindar-image-target="targetIndex: 4">
+              <a-gltf-model rotation="0 -90 -90 " position="0 0 0" scale="10 10 10" src="#MS6E2M" animation-mixer>
+            </a-entity>
+
+
+        </a-scene>
+		
+	
+    		<a href="https://www.facebook.com/HBAugmentedReality">
+			<img style="position: absolute; bottom: 0; right: 0;" src="assets/images/HB_Logo.png" width="30%"/>
+		</a>
+ 	
+  
+  </div>
+
+ 
+
+</body>
