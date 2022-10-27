@@ -1,2 +1,2 @@
-# FestoMarkerBased
-Demo for Festo
+# FestoDemo AR for customers
+Demo
