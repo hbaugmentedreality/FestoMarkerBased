@@ -1,20 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    
-    <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-CM44RJ0JTT"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-CM44RJ0JTT');
-        </script>
-    
-    
     <link rel="shortcut icon" href="favicon.ico" />
-    <title>Festo Augmented Reality</title>
+    <title>Festo SMS - AR</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -37,6 +25,15 @@
     <!-- 💁 OPTIONAL: The :focus-visible polyfill removes the focus ring for some input types -->
     <script src="https://unpkg.com/focus-visible@5.0.2/dist/focus-visible.js" defer></script>
     
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0MM654BEQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-D0MM654BEQ');
+    </script>
 
   </head>
 
@@ -51,12 +48,12 @@
         ios-src="assets/models/Demo3D.usdz"
        
         alt="Festo 3D Demo Model"
- 
+        ar-modes= "quick-look webxr scene-viewer"
         shadow-intensity="1"
         camera-controls
         autoplay
     
-        exposure="1.1"
+        exposure="1.2"
         ar
       >
 
@@ -79,9 +76,9 @@
       <div>
         <section class="attribution">
           <span>
-            <h1>Festo 3D Demo Model</h1>
+            <h1>Festo HGO</h1>
             <span>
-             Augmented Reality
+            3D Model
             </span>
           </span>
           <a
@@ -96,7 +93,46 @@
         </section>
       </div>
  
+      <div class="slider">
+        <div class="slides">
+          <button
+            class="slide selected"
+            onclick="switchSrc(this, 'Demo3D')"
+            style="background-image: url('assets/images/HGO1.png');"
+          ></button
+          ><button
+            class="slide"
+            onclick="switchSrc(this, 'Demo3D_2')"
+            style="background-image: url('assets/images/HGO2.png');"
+          ></button>
+                           
+        </div>
+      </div>
+    </div>
 
+    <script type="module">
+      const modelViewer = document.querySelector("model-viewer");
+    
+      window.switchSrc = (element, name) => {
+        const base = "assets/Models/" + name;
+        modelViewer.src = base + ".glb";
+        modelViewer.iosSrc = base + ".usdz"
+        modelViewer.alt = name;
+        
+        const slides = document.querySelectorAll(".slide");
+        slides.forEach(element => {
+          element.classList.remove("selected");
+        });
+        element.classList.add("selected");
+      };
+
+      document
+        .querySelector(".slider")
+        .addEventListener("beforexrselect", ev => {
+          // Keep slider interactions from affecting the XR scene.
+          ev.preventDefault();
+        });
+    </script>
 
 
   <!-- 💁 Include both scripts below to support all browsers! -->
@@ -124,12 +160,8 @@
             <img style="padding-right: 1px; padding-left: 10px; height: 26px;" alt="LinkedIn" src="assets/images/LinkedInIcon.png"></a>
      </span>
     
-     <span> (c) 2022  </span>
-     <p>  </p>
-    
-     <a style="padding-bottom: 20px;" href="https://hbaugmentedreality.github.io/festodemo/index_v2.html" target="_blank" style="padding-left: 10px;">Click here to see another example </a>
-    
-    
+     <span><a> (c) 2022 </a>
+     </span>
     
       <!-- <span><a target="_blank" href="https://www.facebook.com/HBAugmentedReality">
             <img style="padding-right: 3px; padding-left: 10px; height: 21px;" alt="Facebook" src="assets/images/FacebookIcon.png"></a> 
@@ -142,5 +174,5 @@
      </span>
 
   </footer>
-  
- </html>
+
+</html>
